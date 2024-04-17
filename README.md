@@ -1,16 +1,15 @@
-
+# Приклади запитів і відповідей для `kubectl-ai`
 
 | NAME | PROMPT | DESCRIPTION | EXAMPLE |
 | --- | --- | --- | --- |
-| PHP-FPM + Nginx | deployment php-fpm and nginx open ports |  | [app.yaml](app.yaml) |
+| Nginx | deployment: latest nginx, open both web ports |  | [app.yaml](app.yaml) |
+| Nginx + PHP-FPM | deployment of two containers: php-fpm version 8.3, nginx latest version. open ports for all containers. |  | [app-multicontainer.yaml](app-multicontainer.yaml) |
 | Nginx + liveness probe | deployment latest nginx. add liveness probe |  | [app-livenessProbe.yaml](app-livenessProbe.yaml) |
 |  |  |  |  |
 |  |  |  |  |
 |  |  |  |  |
 |  |  |  |  |
 
-
-"deployment of two containers: php-fpm version 8.3, nginx latest version. open ports for all containers." [app.yaml](app.yaml)
 
 
 
