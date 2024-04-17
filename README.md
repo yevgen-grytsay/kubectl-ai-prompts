@@ -8,7 +8,7 @@
 | Nginx + readiness probe | deployment: latest nginx, open both web ports, add readiness check |  | [app-readinessProbe.yaml](app-readinessProbe.yaml) |
 | Nginx 2 replicas + volume mounts | deployment: latest nginx, two replicas, open both ports, add persistent volume claim and mount it to nginx html directory |  | [app-volumeMounts.yaml](app-volumeMounts.yaml) |
 | Cronjob | cronjob: every minute print current date and time to stdout |  | [app-cronjob.yaml](app-cronjob.yaml) |
-|  |  |  |  |
+| Job | job example: append date and time to a file in mounted volume; mount pvc volume |  | [app-job.yaml](app-job.yaml) |
 
 
 
@@ -80,4 +80,10 @@ $ kubectl apply -f _app-persistentVolumeClaim.yaml
 $ kubectl get pvc
 NAME        STATUS   VOLUME             CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 nginx-pvc   Bound    nginx-pvc-volume   1Gi        RWO            manual         12s
+```
+
+## Check job results
+
+```sh
+kubectl exec pod/nginx-deployment-57f978445f-x57qv -- /bin/cat /usr/share/nginx/html/date-time.html
 ```

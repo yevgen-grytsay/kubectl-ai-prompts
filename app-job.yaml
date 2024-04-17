@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: date-time-job
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+        - name: date-time-container
+          image: busybox
+          command: ["sh", "-c", "date +%D-%T >> /data/date-time.html"]
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: nginx-pvc
+      restartPolicy: OnFailure
+      terminationGracePeriodSeconds: 30
