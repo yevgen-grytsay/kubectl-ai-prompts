@@ -12,7 +12,17 @@
 | Resource Management | deployment: latest nginx. add resource limit |  | [app-resources.yaml](app-resources.yaml) |
 | MySQL + env variables from a secret | deployment: latest mysql; create all necessary env variables one by one, take values from a secret |  | [app-secret-env.yaml](app-secret-env.yaml) |
 
+## Setup
+```sh
+k3d cluster create ai-prompts-cluster \
+    --registry-config /home/yevhen/.k3d/registries.yaml \
+    --volume /home/yevhen/.k3d/ai-prompts-cluster-volume:/tmp/k3dvol \
+    -p "8088:80"
 
+kubectl create ns kube-ai
+
+kubectl config set-context --current --namespace=kube-ai
+```
 
 ## Liveness Probe for Nginx
 ```sh
@@ -54,18 +64,6 @@ spec:
       storage: 1Gi
 ```
 
-
-```sh
-k3d cluster create ai-prompts-cluster \
-    --registry-config /home/yevhen/.k3d/registries.yaml \
-    --volume /home/yevhen/.k3d/ai-prompts-cluster-volume:/tmp/k3dvol \
-    -p "8088:80"
-
-kubectl create ns kube-ai
-
-kubectl config set-context --current --namespace=kube-ai
-```
-
 ```sh
 $ kubectl apply -f _app-persistentVolume.yaml 
 persistentvolume/nginx-pvc-volume created
@@ -103,3 +101,7 @@ kubectl apply -f app-secret-env.yaml
 
 kubectl exec --stdin --tty pod/mysql-7f85f68549-sqfbr -- /usr/bin/mysql -u u-kube -D db-kube -p
 ```
+
+## Resources
+- [Managing Secrets using kubectl | Use raw data](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/#use-raw-data)
+- [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
