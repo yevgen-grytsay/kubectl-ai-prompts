@@ -9,6 +9,8 @@
 | Nginx 2 replicas + volume mounts | deployment: latest nginx, two replicas, open both ports, add persistent volume claim and mount it to nginx html directory |  | [app-volumeMounts.yaml](app-volumeMounts.yaml) |
 | Cronjob | cronjob: every minute print current date and time to stdout |  | [app-cronjob.yaml](app-cronjob.yaml) |
 | Job | job example: append date and time to a file in mounted volume; mount pvc volume |  | [app-job.yaml](app-job.yaml) |
+| Resource Management | deployment: latest nginx. add resource limit |  | [app-resources.yaml](app-resources.yaml) |
+|  |  |  |  |
 
 
 
