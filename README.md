@@ -7,7 +7,7 @@
 | Nginx + liveness probe | deployment latest nginx. add liveness probe |  | [app-livenessProbe.yaml](app-livenessProbe.yaml) |
 | Nginx + readiness probe | deployment: latest nginx, open both web ports, add readiness check |  | [app-readinessProbe.yaml](app-readinessProbe.yaml) |
 | Nginx 2 replicas + volume mounts | deployment: latest nginx, two replicas, open both ports, add persistent volume claim and mount it to nginx html directory |  | [app-volumeMounts.yaml](app-volumeMounts.yaml) |
-|  |  |  |  |
+| Cronjob | cronjob: every minute print current date and time to stdout |  | [app-cronjob.yaml](app-cronjob.yaml) |
 |  |  |  |  |
 
 

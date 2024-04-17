@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: datetime-cronjob
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: datetime-container
+              image: busybox
+              command:
+                ["sh", "-c", "date; echo 'Current date and time is: $(date)'"]
+          restartPolicy: OnFailure
