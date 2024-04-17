@@ -10,7 +10,7 @@
 | Cronjob | cronjob: every minute print current date and time to stdout |  | [app-cronjob.yaml](app-cronjob.yaml) |
 | Job | job example: append date and time to a file in mounted volume; mount pvc volume |  | [app-job.yaml](app-job.yaml) |
 | Resource Management | deployment: latest nginx. add resource limit |  | [app-resources.yaml](app-resources.yaml) |
-|  |  |  |  |
+| MySQL + env variables from a secret | deployment: latest mysql; create all necessary env variables one by one, take values from a secret |  | [app-secret-env.yaml](app-secret-env.yaml) |
 
 
 
@@ -87,5 +87,19 @@ nginx-pvc   Bound    nginx-pvc-volume   1Gi        RWO            manual        
 ## Check job results
 
 ```sh
-kubectl exec pod/nginx-deployment-57f978445f-x57qv -- /bin/cat /usr/share/nginx/html/date-time.html
+$ kubectl exec pod/nginx-deployment-57f978445f-x57qv -- /bin/cat /usr/share/nginx/html/date-time.html
+```
+
+## Create Secret for MySQL
+
+```sh
+kubectl create secret generic mysql-secret \
+    --from-literal=mysql-root-password='root' \
+    --from-literal=mysql-user=u-kube \
+    --from-literal=mysql-database=db-kube \
+    --from-literal=mysql-password='qwe123'
+
+kubectl apply -f app-secret-env.yaml
+
+kubectl exec --stdin --tty pod/mysql-7f85f68549-sqfbr -- /usr/bin/mysql -u u-kube -D db-kube -p
 ```
