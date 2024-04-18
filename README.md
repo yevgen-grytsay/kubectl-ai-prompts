@@ -105,3 +105,4 @@ kubectl exec --stdin --tty pod/mysql-7f85f68549-sqfbr -- /usr/bin/mysql -u u-kub
 ## Resources
 - [Managing Secrets using kubectl | Use raw data](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/#use-raw-data)
 - [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+- [Running Automated Tasks with a CronJob](https://kubernetes.io/docs/tasks/job/automated-tasks-with-cron-jobs/)

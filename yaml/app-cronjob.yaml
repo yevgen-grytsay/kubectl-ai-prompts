@@ -12,5 +12,5 @@ spec:
             - name: datetime-container
               image: busybox
               command:
-                ["sh", "-c", "date; echo 'Current date and time is: $(date)'"]
+                ["sh", "-c", 'date; echo "Current date and time is: $(date)"']
           restartPolicy: OnFailure
